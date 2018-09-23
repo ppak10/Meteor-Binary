@@ -5,6 +5,7 @@
 
 // Package Imports ------------------------------------------------------------
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 // ----------------------------------------------------------------------------
 
@@ -13,8 +14,25 @@ import { Tasks } from '../api/tasks.js';
 import Task from './Task.js';
 // ----------------------------------------------------------------------------
 
-// App component - represents the whole app
+// React App Component --------------------------------------------------------
+// App that represents the whole app
 class App extends Component {
+
+  // Form Submition
+  handleSubmit(event) {
+    event.preventDefault();
+
+    // Find the text field via the React ref
+    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+
+    Tasks.insert({
+      text,
+      createdAt: new Date(), // current time
+    });
+
+    // Clear form
+    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+  }
 
   renderTasks() {
     return this.props.tasks.map((task) => (
@@ -22,11 +40,19 @@ class App extends Component {
     ));
   }
 
+  // Render Component ---------------------------------------------------------
   render() {
     return (
       <div className="container">
         <header>
           <h1>Todo List</h1>
+          <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+            <input
+              type="text"
+              ref="textInput"
+              placeholder="Type to add new tasks"
+            />
+          </form>
         </header>
 
         <ul>
@@ -36,10 +62,12 @@ class App extends Component {
     );
   }
 }
+// ----------------------------------------------------------------------------
 
-// App component default export
+// Export Component -----------------------------------------------------------
 export default withTracker(() => {
   return {
-    tasks: Tasks.find({}).fetch(),
+    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
   };
 })(App);
+// ----------------------------------------------------------------------------

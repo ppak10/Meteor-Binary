@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 // File Developer: Peter Pak
-// Description: Script for main server startup
+// Description: Main script for server startup
 // ----------------------------------------------------------------------------
 
 // Package Imports ------------------------------------------------------------

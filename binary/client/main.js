@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 // File Developer: Peter Pak
-// Description: Script for starter JS
+// Description: Main Script for client startup
 // ----------------------------------------------------------------------------
 
 import React from 'react';
