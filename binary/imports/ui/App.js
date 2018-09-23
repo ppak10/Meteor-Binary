@@ -15,7 +15,7 @@ import Task from './Task.js';
 // ----------------------------------------------------------------------------
 
 // React App Component --------------------------------------------------------
-// App that represents the whole app
+// App component that represents the whole app
 class App extends Component {
 
   // Form Submition
