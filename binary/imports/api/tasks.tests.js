@@ -3,8 +3,6 @@
 // Description: Script for MongoDB testing
 // ----------------------------------------------------------------------------
 
-/* eslint-env mocha */
-
 // Package Imports ------------------------------------------------------------
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';

@@ -74,7 +74,7 @@ class App extends Component {
         <header>
           <h1>Todo List ({this.props.incompleteCount})</h1>
 
-          <label className="hide-completed">
+          <label className="hide-completed m-2">
             <input
               type="checkbox"
               readOnly
