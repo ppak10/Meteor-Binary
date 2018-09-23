@@ -1,16 +1,10 @@
 // ----------------------------------------------------------------------------
 // File Developer: Peter Pak
-// Description: Script for main server startup
+// Description: Script for MongoDB components
 // ----------------------------------------------------------------------------
 
 // Package Imports ------------------------------------------------------------
-import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 // ----------------------------------------------------------------------------
 
-// File Imports ---------------------------------------------------------------
-import '../imports/api/tasks.js';
-// ----------------------------------------------------------------------------
-
-Meteor.startup(() => {
-  // code to run on server at startup
-});
+export const Tasks = new Mongo.Collection('tasks');
