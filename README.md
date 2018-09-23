@@ -19,7 +19,7 @@ Binary is based heavily on [Telescope](https://github.com/TelescopeJS/Telescope)
 3. accounts-ui
 4. accounts-password
 5. meteortesting:mocha
-6. fourseven:scss
+6. [fourseven:scss](https://atmospherejs.com/fourseven/scss)
 ### NPM Packages
 1. bootstrap
 2. classnames
