@@ -1,6 +1,20 @@
 # Binary
 ###### A social debate network, built with [Meteor](http://meteor.com) and [React](https://reactjs.org/).
 
+## Getting Started
+Once cloning the repository, to get started type the following commands to start the Binary server. If running the server for the first time locate the Meteor-React-Binary directory and type in:
+```
+./install.sh
+```
+After installing the necessary node packages, start the server by typing in:
+```
+./run.sh
+```
+This should start the server and you should be able to access it through your browser by typing in the url:
+```
+localhost:3000
+```
+
 ## Why Binary?
 Binary is designed to be potentially beneficial to all sorts of people. In brief, it can be:
 
