@@ -2,7 +2,8 @@
 ###### A social debate network, built with [Meteor](http://meteor.com) and [React](https://reactjs.org/).
 
 ## Getting Started
-Once cloning the repository, to get started type the following commands to start the Binary server. If running the server for the first time locate the Meteor-React-Binary directory and type in:
+Once cloning the repository, to get started type the following commands to start the Binary server.
+If running the server for the first time locate the Meteor-React-Binary directory and type in, otherwise skip directly to the run command:
 ```
 ./install.sh
 ```
