@@ -1,8 +1,16 @@
 // ----------------------------------------------------------------------------
 // File Developer: Peter Pak
-// Description: Base script for client startup
+// Description: Base script for server startup
+// ----------------------------------------------------------------------------
+
+// Package Imports ------------------------------------------------------------
+import { Meteor } from 'meteor/meteor';
 // ----------------------------------------------------------------------------
 
 // File Imports ---------------------------------------------------------------
-import '../imports/startup/client'; // Imports and runs client startup script
+import '../../api/tasks.js';
 // ----------------------------------------------------------------------------
+
+Meteor.startup(() => {
+  // code to run on server at startup
+});

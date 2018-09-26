@@ -16,7 +16,7 @@ import { Tasks } from '../api/tasks.js';
 // Task Component -------------------------------------------------------------
 // Component represents a single todo item
 export default class Task extends Component {
-  
+
   toggleChecked() {
     // Set the checked property to the opposite of its current value
     Meteor.call('tasks.setChecked', this.props.task._id, !this.props.task.checked);
@@ -53,7 +53,7 @@ export default class Task extends Component {
         />
 
         { this.props.showPrivateButton ? (
-          <button className="toggle-private" onClick={this.togglePrivate.bind(this)}>
+          <button className="toggle-private btn btn-sm btn-primary" onClick={this.togglePrivate.bind(this)}>
             { this.props.task.private ? 'Private' : 'Public' }
           </button>
         ) : ''}

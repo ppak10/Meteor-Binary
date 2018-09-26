@@ -1,24 +1,26 @@
 // ----------------------------------------------------------------------------
 // File Developer: Peter Pak
-// Description: Script for routing using React Router
+// Description: Client startup script called by client/main.js
 // ----------------------------------------------------------------------------
 
 // Package Imports ------------------------------------------------------------
 import React from 'react';
-import { Router, Route, Switch } from 'react-router';
-import createBrowserHistory from 'history/createBrowserHistory';
+import { Meteor } from 'meteor/meteor';
+import { render } from 'react-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 // ----------------------------------------------------------------------------
 
-// Route Components -----------------------------------------------------------
+// File Imports ---------------------------------------------------------------
+import '../accounts-config.js';
 import App from '../../ui/App.js';
 // ----------------------------------------------------------------------------
 
-const browserHistory = createBrowserHistory();
-
-export const renderRoutes = () => (
-  <Router history={browserHistory}>
-    <Switch>
-      <Route exact path="/" component={App}/>
-    </Switch>
-  </Router>
-);
+Meteor.startup(() => {
+  render((
+    <BrowserRouter>
+      <Switch>
+        <App />
+      </Switch>
+    </BrowserRouter>
+  ), document.getElementById('render-target'));
+});
