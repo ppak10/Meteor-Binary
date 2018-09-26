@@ -4,10 +4,14 @@
 // ----------------------------------------------------------------------------
 
 // Package Imports ------------------------------------------------------------
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data'; // work to outsource
+import { Accounts } from 'meteor/accounts-base';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import PropTypes from 'prop-types';
 // ----------------------------------------------------------------------------
 
 // File Imports ---------------------------------------------------------------
@@ -20,13 +24,24 @@ import AccountsUIWrapper from './AccountsUIWrapper.js';
 // App component that represents the whole app
 class App extends Component {
 
-  // Class Constructor
+  // Class Constructor --------------------------------------------------------
   constructor(props) {
     super(props);
 
     this.state = {
+      ready: false,
       hideCompleted: false,
     };
+  }
+
+  componentDidMount() {
+    const { handleOnLogin } = this.props; // Creates handleOnLogin prop
+    Accounts.onLogin(() => handleOnLogin());
+    this.setPageReady();
+  }
+
+  setPageReady() {
+    this.setState({ ready: true });
   }
 
   // Form Submition
@@ -69,6 +84,7 @@ class App extends Component {
 
   // Render Component ---------------------------------------------------------
   render() {
+    const { props, state } = this;
     return (
       <div className="container">
         <header>
@@ -107,14 +123,28 @@ class App extends Component {
 }
 // ----------------------------------------------------------------------------
 
-// Export Component -----------------------------------------------------------
-export default withTracker(() => {
-  Meteor.subscribe('tasks');
+// Props ----------------------------------------------------------------------
+App.propTypes = {
+  handleOnLogin: PropTypes.func.isRequired
+};
 
-  return {
-    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
-    incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
-    currentUser: Meteor.user(),
-  };
-})(App);
+const mapStateToProps = state => ({ ...state });
+const mapDispatchToProps = dispatch => ({
+  handleOnLogin: data => dispatch(onLogin(data))
+});
+// ----------------------------------------------------------------------------
+
+// Export App -----------------------------------------------------------------
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withTracker(() => {
+    Meteor.subscribe('tasks');
+
+    return {
+      tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+      incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
+      currentUser: Meteor.user(),
+    };
+  })
+)(App);
 // ----------------------------------------------------------------------------
