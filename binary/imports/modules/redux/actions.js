@@ -11,7 +11,8 @@ export function onLogin(){
   return (dispatch) => {
 
     dispatch({
-      type: 'ON_LOGIN'
+      type: 'ON_LOGIN',
+      loading: false
     });
   };
 }
@@ -20,7 +21,8 @@ export function onLogout(){
   return (dispatch) => {
 
     dispatch({
-      type: 'ON_LOGOUT'
+      type: 'ON_LOGOUT',
+      loading: false
     });
   };
 }
